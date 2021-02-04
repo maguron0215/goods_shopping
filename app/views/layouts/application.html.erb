@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoodsShopping</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ 
+
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="notification is-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <nav class="navbar is-primary close">
+      <div class="navbar-brand">
+
+        <% if user_signed_in? %>
+          <%= link_to goods_path, class: "navbar-item" do %>
+            <h1 class="title is-4" style="font-family: cursive;">GoodsShopping</h1>
+          <% end %>
+        <% else %>
+          <%= link_to root_path, class: "navbar-item" do %>
+            <h1 class="title is-4" style="font-family: cursive;">GoodsShopping</h1>
+          <% end %>
+        <% end %>
+
+        <div class="navbar-burger btn" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+
+
+      </div>
+
+      <% if user_signed_in? %>
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-item">
+            <%= link_to "おすすめ商品一覧", goods_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "おすすめしたい商品の追加", new_good_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to "ユーザー一覧", users_path, class: " button is-warning is-light" %>
+                </p>
+                <p class="control">
+                  <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
+                </p>
+                <p class="control">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-item">
+            <%= link_to "おすすめ商品一覧", goods_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "ユーザー一覧", users_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
+                </p>
+                <p class="control">
+                  <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </nav>
+
+  <div class="footer_menu">
+    <% if user_signed_in? %>
+        <div class="app-columns">
+           <div class="app-column button is-success">
+          <%= link_to "商品", goods_path, class:"has-text-white has-text-weight-semibold size" %>
+          </div>
+           <div class="app-column button is-success">
+          <%= link_to "投稿", new_good_path, class:"has-text-white has-text-weight-semibold size" %>
+          </div>
+           <div class="app-column button is-success">
+          <%= link_to "ユーザー", users_path, class:"has-text-white has-text-weight-semibold size" %>
+          </div>
+           <div class="app-column button is-success">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"has-text-white has-text-weight-semibold size" %>
+          </div>
+           <div class="app-column button is-success">
+          <%= link_to "マイページ", user_path(current_user), class:"has-text-white has-text-weight-semibold size" %>
+          </div>
+       </div>
+    <% else %>
+        <div class="app-columns">
+            <div class="app-column button is-success">
+              <%= link_to "商品", goods_path, class:"has-text-white has-text-weight-semibold size" %>
+            </div>
+            <div class="app-column button is-success">
+              <%= link_to "ユーザー", users_path, class:"has-text-white has-text-weight-semibold size" %>
+            </div>
+            <div class="app-column button is-success">
+              <%= link_to "ログイン", new_user_session_path, class:"has-text-white has-text-weight-semibold size" %>
+            </div>
+            <div class="app-column button is-success">
+              <%= link_to "新規登録", new_user_registration_path, class:"has-text-white has-text-weight-semibold size" %>
+            </div>
+        </div>
+    <% end %>
+  </div>
+
+
+    <%= yield %>
+  </body>
+</html>

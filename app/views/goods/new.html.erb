@@ -1,0 +1,48 @@
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        新規商品紹介
+      </h1>
+    </div>
+  </div>
+</section>
+
+
+<% if @good.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@good.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @good.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @good do |f| %>
+          <div class="field">
+            <%= f.label :title, "おすすめしたい商品名", class: "label" %>
+            <%= f.text_field :title, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :body, "おすすめしたい理由", class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, "写真", class: "label" %>
+            <%= f.attachment_field :image, class: "input" %>
+          </div>
+
+          <%= f.submit '投稿', class: "button is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

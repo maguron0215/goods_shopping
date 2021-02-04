@@ -1,0 +1,54 @@
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-inline">
+        おすすめされた商品
+      </h1>
+      <div class="is-pulled-right">
+        <%= form_tag goods_path,{method: :get} do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag "Search" ,title: nil,class: "button is-info" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @goods.each do |good| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to good_path(good) do %>
+                  <%= attachment_image_tag good, :image %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <%=link_to user_path(good.user.id) do %>
+                      <%= attachment_image_tag good.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="is-size-4 has-text-weight-bold"><%=link_to good.title, good_path(good) %></div>
+                  <div class="has-text-weight-bold "><%=link_to good.user.username, user_path(good.user),class:"has-text-primary " %></div>
+                </div>
+              </div>
+
+              <div class="content">
+                <time><%= good.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
