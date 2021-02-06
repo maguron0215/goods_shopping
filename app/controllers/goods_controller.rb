@@ -2,7 +2,7 @@ class GoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
     # @goods = Good.all.order(id: "DESC")
-    @goods = Good.search(params[:search]).order(id:"DESC")
+    @goods = Good.search(params[:search]).order(id:"DESC").page(params[:page]).per(15)
 
   end
 
