@@ -64,6 +64,9 @@ gem "bulma-rails"
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'omniauth', '1.9.1'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
 
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production
