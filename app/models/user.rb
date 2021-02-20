@@ -8,13 +8,29 @@ class User < ApplicationRecord
 
 # validates :username, presence:true
 
-  def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.username = "ゲスト"
-      user.profile = "どうもゲストユーザーです"
-      user.profile_image_id = "images/no-image.png"
+  def self.find_for_oauth(auth)
+  user = User.where(uid: auth.uid, provider: auth.provider).first
+
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    User.dummy_email(auth),
+        password: Devise.friendly_token[0, 20],
+        image: auth.info.image,
+        name: auth.info.name,
+        nickname: auth.info.nickname,
+        location: auth.info.location
+      )
     end
+
+    user
+  end
+
+  private
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 
 end

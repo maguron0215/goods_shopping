@@ -311,7 +311,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (~> 3.3)
-  omniauth (= 1.9.1)
+  omniauth
   omniauth-twitter
   pg
   puma (~> 5.0)

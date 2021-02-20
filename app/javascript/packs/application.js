@@ -7,4 +7,4 @@ require("channels")
 require("jquery")
 
 
-require ('test.js')
+require ('move.js')

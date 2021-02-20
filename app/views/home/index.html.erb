@@ -16,7 +16,14 @@
           <br>
           <%= link_to "新規登録", new_user_registration_path, class: "button is-success is-fullwidth" %>
           <br>
-          <%= link_to 'ゲストログイン', "guest_sessions_create_path",method: :post %>
+          <div class="columns login-select">
+            <%= link_to 'ゲストログイン', "/guest_sessions/create",method: :post, class: 'button is-link column is-5 guest-login' %>
+
+            <%= link_to user_twitter_omniauth_authorize_path,method: :post, class: 'twitter-link button column is-info is-5 twitter-login' do %>
+               <i class="fab fa-twitter"></i>
+               <span>ツイッターでログイン</span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
