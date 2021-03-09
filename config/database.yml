@@ -26,3 +26,9 @@ production:
   encoding: unicode
   pool: 5
   database: db/production.sqlite3
+
+
+  database: application_name_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
