@@ -82,3 +82,6 @@ gem 'dotenv-rails'
 
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production
+
+gem 'mini_magick'
+gem 'aws-sdk-s3', require: false

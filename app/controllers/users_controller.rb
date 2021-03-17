@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    reset_session
+    redirect_to root_url
+  end
+
   def update
 
     @user = User.find(params[:id])
@@ -29,4 +34,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :profile, :profile_image)
   end
+
 end
