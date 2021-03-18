@@ -309,6 +309,6 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  config.omniauth :twitter, ENV["TWITTER_APP_ID"], ENV["TWITTER_APP_SECRET"]
+  config.omniauth :twitter, "cI1RMykWL76JCRzQYRzW3ca6Y", "SKzVSy6Cxgctq3aUPPAakZeREoaHt2numzwgtNe5MpWKPdSkRk"
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 end
